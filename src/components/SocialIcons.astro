@@ -1,0 +1,25 @@
+---
+import { Icon } from 'astro-icon/components'
+import { socialLinks } from '@/site-config';
+
+const socialLinksArray = Object.values(socialLinks);
+---
+
+<div class="flex gap-2">
+  {socialLinksArray.map((link) => (
+    <a
+      href={link.url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-block text-foreground transition-colors hover:text-foreground/75"
+      aria-label={link.title}
+    >
+      <Icon 
+        name={link.icon} 
+        width="1em" 
+        height="1em" 
+        class="h-5 w-5"
+      />
+    </a>
+  ))}
+</div>

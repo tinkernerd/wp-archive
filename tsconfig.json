@@ -1,0 +1,51 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "include": [
+    ".astro/types.d.ts",
+    "**/*"
+  ],
+  "compilerOptions": {
+    "strictNullChecks": true,
+    "allowJs": true,
+    "baseUrl": ".",
+    "lib": [
+      "es2022",
+      "dom",
+      "dom.iterable"
+    ],
+    "paths": {
+      "@/assets/*": [
+        "src/assets/*"
+      ],
+      "@/components/*": [
+        "src/components/*"
+      ],
+      "@/layouts/*": [
+        "src/layouts/*"
+      ],
+      "@/js/*": [
+        "src/js/*"
+      ],
+      "@/data/*": [
+        "src/data/*"
+      ],
+      "@/types": [
+        "src/data/types.ts"
+      ],
+      "@/site-config": [
+        "src/data/site.config.ts"
+      ],
+      "@/styles": [
+        "src/styles/*"
+      ],
+      "@/utils/*": [
+        "src/utils/*"
+      ]
+    },
+    "jsx": "react-jsx",
+    "jsxImportSource": "react"
+  },
+  "exclude": [
+    "dist"
+  ]
+}

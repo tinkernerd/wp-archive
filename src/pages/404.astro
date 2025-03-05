@@ -1,0 +1,43 @@
+---
+import Link from "@/components/Link.astro";
+import "../styles/global.css";
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <title>404 Not Found</title>
+  <meta name="description" content="Page not found" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+</head>
+<body>
+  <div class="flex flex-col items-center justify-center min-h-screen text-center gap-6 p-6 bg-gray-900 text-white">
+    <div>
+      <h1 class="text-4xl font-bold">Welp, this is awkward!</h1>
+      <p class="text-lg opacity-80">We seem to have misplaced something&#8230;</p>
+    </div>
+
+    <img
+      id="chewy-gif"
+      src="https://media.tinkernerd.dev/gifs/archive_incomplete.gif"
+      width="498"
+      height="280"
+      alt="Impossible. Perhaps the archives are incomplete."
+      class="max-w-full rounded-lg shadow-lg"
+    />
+
+    <Link
+      href="/"
+      borderVisible={true}
+      isFilled={true}
+      text="Go Home"
+      icon={{
+        name: "tabler:home",
+        side: "right",
+      }}
+      classes="text-gray-900"
+    />
+  </div>
+</body>
+</html>
+

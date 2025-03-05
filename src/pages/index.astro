@@ -1,0 +1,39 @@
+---
+import Layout from '@/layouts/Layout.astro';
+import { getAlbums, getImages } from '@/utils/generateIndex';
+
+const rawAlbums = await getAlbums();
+
+const albums = (
+  await Promise.all(
+    rawAlbums.map(async (album: string) => {
+      const images = await getImages(album);
+      if (images.length === 0) return null;
+
+      return {
+        title: album.replace(/[-_]/g, ' ').replace(/\b\w/g, (char: string) => char.toUpperCase()),
+        image: images[Math.floor(Math.random() * images.length)], // Pick a random image
+        link: `/${album}`,
+      };
+    })
+  )
+).filter((album): album is { title: string; image: string; link: string } => album !== null);
+---
+
+<Layout title="Wallpapers" description="Download high-quality wallpapers for free.">
+  <!-- Wallpaper Albums -->
+  <section class="max-w-screen-lg mx-auto px-6 py-16">
+    <h2 class="text-3xl font-semibold text-center text-theme-text mb-10">Wallpaper Albums</h2>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      {albums.map((album) => (
+        <a href={album.link} class="group block relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition">
+          <img src={album.image} alt={album.title} class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-300" />
+          <div class="absolute inset-0 bg-black/50 flex items-center justify-center">
+            <h3 class="text-white text-2xl font-semibold">{album.title}</h3>
+          </div>
+        </a>
+      ))}
+    </div>
+  </section>
+</Layout>

@@ -1,0 +1,31 @@
+---
+const today = new Date();
+import { siteConfig } from "@/site-config";
+import SocialIcons from "./SocialIcons.astro";
+---
+
+<footer class="border-t border-theme-border text-theme-text-muted w-full py-2 px-5 flex justify-between items-center md:h-10 flex-wrap md:flex-nowrap">
+  <span class="text-sm md:text-base">&copy; {today.getFullYear()} | {siteConfig.author} | All rights reserved.</span>
+  
+  <span id="current-datetime" class="text-sm md:inline hidden">Loading time...</span>
+
+  <div class="flex gap-3">
+    <SocialIcons />
+  </div>
+</footer>
+
+<script is:inline>
+  document.addEventListener("DOMContentLoaded", function () {
+    const dateTimeSpan = document.getElementById('current-datetime');
+
+    function updateDateTime() {
+        const now = new Date();
+        const formattedTime = now.toLocaleTimeString('en-GB', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+        const formattedDate = now.toLocaleDateString('en-GB').split('/').reverse().join('-');
+        dateTimeSpan.innerText = `${formattedTime} | ${formattedDate}`;
+    }
+
+    setInterval(updateDateTime, 1000);
+    updateDateTime();
+  });
+</script>

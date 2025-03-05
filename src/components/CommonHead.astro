@@ -1,0 +1,35 @@
+---
+import "../styles/global.css";
+import { siteConfig } from "@/site-config";
+const { title, description } = Astro.props;
+---
+
+<!-- Global Metadata -->
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width" />
+<meta name="generator" content={Astro.generator} />
+<!-- Favicon -->
+<link rel="icon" type="image/svg+xml" href="/favicon/favicon.svg" />
+<title>{siteConfig.title} - {title}</title>
+<meta name="description" content={description} />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" /><link
+    rel="preconnect"
+    href="https://fonts.gstatic.com"
+    crossorigin
+  /><link
+    href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400;1,700&display=swap"
+    rel="stylesheet"
+  />
+<!--Scripts-->
+<script is:inline src="/scripts/nav.js" type="module"></script>
+<!-- Scrollable a11y code helper -->
+<script src="/scripts/make-scrollable-code-focusable.js" is:inline></script>
+<script src="https://unpkg.com/feather-icons@4.29.2/dist/feather.min.js" is:inline></script>
+
+
+<script is:inline>
+  console.log('%c Wow! ', 'font-size: 100px; color: white; background-color: black; border-radius: 5px;');
+  console.log('Looks like you must like code!');
+  console.log('You should look at the source for this website: https://github.com/tinkernerd/tinkernerd.dev');
+</script>

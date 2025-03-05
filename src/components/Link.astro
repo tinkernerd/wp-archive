@@ -1,0 +1,51 @@
+---
+import { Icon } from 'astro-icon/components';
+
+interface Props {
+  text: string;
+  href: string;
+  variant?: "primary" | "secondary"; // ✅ Ensure 'variant' is defined
+  icon?: {
+    name: string;
+    side: "left" | "right";
+  };
+  isFilled?: boolean;
+  borderVisible?: boolean;
+  classes?: string;
+}
+
+const {
+  text,
+  href,
+  variant = "primary", // ✅ Default to "primary" if not provided
+  icon,
+  isFilled = true,
+  borderVisible = false,
+  classes,
+  ...rest
+} = Astro.props as Props;
+---
+
+<a
+  href={href}
+  class:list={[
+    "flex items-center gap-2 px-4 py-2 text-base font-medium rounded-md transition-opacity duration-200",
+    "focus-visible:ring-4 focus-visible:ring-offset-2 focus-visible:ring-accent",
+    variant === "primary" ? "text-theme-text bg-theme-accent" : "text-theme-accent bg-transparent",
+    isFilled ? "bg-theme-accent text-white" : "bg-transparent",
+    borderVisible ? "border border-theme-accent" : "border-transparent",
+    "hover:opacity-80",
+    classes
+  ]}
+  {...rest}
+>
+  {icon && icon.side === "left" && (
+    <Icon name={icon.name} height="24" width="24" />
+  )}
+
+  <span>{text}</span>
+
+  {icon && icon.side === "right" && (
+    <Icon name={icon.name} height="24" width="24" />
+  )}
+</a>

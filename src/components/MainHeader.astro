@@ -1,0 +1,27 @@
+---
+import { siteConfig } from '@/data/site.config';
+const { title = '' } = Astro.props;
+
+// Ensure title is a string and capitalize the first letter
+const formattedTitle = title ? title.charAt(0).toUpperCase() + title.slice(1) : '';
+
+const currentUrl = Astro.url.pathname; // Get the current page URL
+---
+
+<nav class="fixed top-0 w-full bg-gray-900 border-b border-theme-accent transition-colors duration-800 z-10">
+  <div class="max-w-screen-xl mx-auto px-4 md:px-8 flex justify-between items-center py-4 relative">
+    <!-- Logo -->
+    <div class="flex items-center">
+      <a href="/" class="flex items-center gap-2 text-white font-bold no-underline" aria-label="Go to homepage">
+        <h1 class="text-lg font-semibold md:block hidden">{siteConfig.title}</h1>
+      </a>
+    </div>
+
+    <!-- Centered Page Title as Link -->
+    {formattedTitle && (
+      <div class="absolute left-1/2 transform -translate-x-1/2 text-white font-semibold text-lg">
+        <a href={currentUrl} class="hover:underline">{formattedTitle}</a>
+      </div>
+    )}
+  </div>
+</nav>

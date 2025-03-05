@@ -1,0 +1,26 @@
+---
+import CommonHead from "@/components/CommonHead.astro";
+import MainHeader from "@/components/MainHeader.astro";
+import MainFooter from "@/components/MainFooter.astro";
+
+const {
+    title,
+    description,
+    header: showHeader = true,
+    footer: showFooter = true,
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <CommonHead {title} {description}/>
+  </head>
+  <body class="pt-16">
+    {showHeader && <MainHeader {title} />}
+		<slot />
+    {showFooter && <MainFooter />}
+  </body>
+</html>
+
+
