@@ -13,12 +13,18 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.4",
+    "@astrojs/preact": "^4.0.5",
     "@astrojs/vercel": "^8.1.1",
     "@aws-sdk/client-s3": "^3.758.0",
     "@tailwindcss/vite": "^4.0.9",
     "astro": "^5.4.2",
     "astro-icon": "^1.1.5",
+    "preact": "^10.26.4",
     "tailwindcss": "^4.0.9"
+  },
+  "overrides": {
+    "react": "npm:@preact/compat@latest",
+    "react-dom": "npm:@preact/compat@latest"
   },
   "devDependencies": {
     "@iconify-json/material-symbols": "^1.2.15",

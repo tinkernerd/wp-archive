@@ -5,6 +5,8 @@ import tailwindcss from '@tailwindcss/vite';
 
 import vercel from '@astrojs/vercel';
 
+import preact from "@astrojs/preact";
+
 // https://astro.build/config
 export default defineConfig({
   site: 'https://wparchive.tinkernerd.dev/',
@@ -15,7 +17,7 @@ export default defineConfig({
     port: parseInt(process.env.PORT || '3000')
   },
 
-  integrations: [ icon()],
+  integrations: [icon(), preact({compat: true})],
 
   vite: {
     plugins: [tailwindcss()]

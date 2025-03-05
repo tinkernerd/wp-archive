@@ -2,6 +2,8 @@
 import CommonHead from "@/components/CommonHead.astro";
 import MainHeader from "@/components/MainHeader.astro";
 import MainFooter from "@/components/MainFooter.astro";
+import AgreementPopup from "@/components/AgreementPopup.tsx";
+
 
 const {
     title,
@@ -18,7 +20,9 @@ const {
   </head>
   <body class="pt-16">
     {showHeader && <MainHeader {title} />}
-		<slot />
+    {console.log("Rendering AgreementPopup in Layout.astro")} <!-- Debugging -->
+    <AgreementPopup client:load /> <!-- Ensure it's loaded in the client -->		
+    <slot />
     {showFooter && <MainFooter />}
   </body>
 </html>
