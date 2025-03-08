@@ -5,13 +5,13 @@ import { getAlbumImages, getAlbums } from "@/utils/r2";
 export const prerender = true; // Ensure static generation
 
 export async function getStaticPaths() {
-  const albums = await getAlbums(); // Dynamically fetch album names
+  const albums = await getAlbums();
   return albums.map((album: string) => ({ params: { album } }));
 }
 
 const { album } = Astro.params;
 let images = await getAlbumImages(album);
-const albums = await getAlbums(); // Fetch albums for navigation
+const albums = await getAlbums();
 
 // Filter out unwanted files like .DS_Store and README.md
 images = images.filter(image => !image.includes(".DS_Store") && !image.includes("README.md"));
@@ -33,12 +33,14 @@ const nextAlbum = currentIndex < sortedAlbums.length - 1 ? sortedAlbums[currentI
       {nextAlbum && <a href={`/${nextAlbum}`} class="text-lg text-gray-500 hover:text-gray-700">{nextAlbum.replace(/[-_]/g, ' ').replace(/\b\w/g, (char) => char.toUpperCase())} ➡</a>}
     </div>
 
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"> <!-- Adjusted grid for wider images -->
-      {images.map((image: string) => (
-        <a href={image} class="group block relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition" target="_blank" rel="noopener noreferrer">
-          <img src={image} alt={image.split("/").pop()} class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-300" /> <!-- Increased height for better aspect ratio -->
+    <!-- Gallery -->
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+      {images.map((image, i) => (
+        <a href={image} target="_blank" title={`Wallpaper ${i + 1}`} class="lightbox">
+          <img src={image} alt={`Wallpaper ${i + 1}`} class="w-full h-64 object-cover transition-transform duration-300" />
         </a>
       ))}
     </div>
   </section>
 </Layout>
+
